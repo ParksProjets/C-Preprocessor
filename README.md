@@ -2,9 +2,29 @@
 This is a C like preprocessor for Javascript, using Node.js
 
 
+## Compile a JS file
+```js
+// Modify options in compiler.js
+var Options = {
+	main: "main.js",
+	output: "output.js",
+	enumHex: true,
+	commentEscape: true,
+	trimIncludes: true,
+	spaceLineLimit: 0
+};
+```
+
+Then run compiler.js with Node.js
+```
+node compiler.js
+```
+
+
+
 ## Usage
 
-### Like C
+### Like a C preprocessor
 
 ##### Include
 ```c
