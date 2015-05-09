@@ -6,12 +6,14 @@ This is a C like preprocessor for Javascript, using Node.js
 
 ### Like C
 
+##### Include
 ```c
 #include "file.js"
 ```
 Include and parse a file.
 
 
+##### Define
 ```c
 // Define a constant
 #define MY_CONST 42
@@ -22,7 +24,7 @@ Include and parse a file.
 Create a constant or a macro.
 
 
-
+##### Define
 ```c
 #undef MY_CONST
 ```
@@ -38,8 +40,6 @@ Delete a constant or a macro.
 ```
 Condition: do stuff if the constant is defined
 
-
-
 ```c
 #ifndef MY_CONST
 
@@ -52,6 +52,7 @@ Condition: do stuff if the constant is undefined
 
 ### Extra
 
+##### Comments
 ```c
 //# One line comment
 
@@ -64,7 +65,7 @@ Multi-line comment
 This comments will be delete in the compiled file.
 
 
-
+##### Enumeration
 ```c
 // Here BIT0_B = 0, BIT0_C = 1, BIT0_D = 2, BIT0_E = 3
 #enum
