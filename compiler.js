@@ -20,10 +20,6 @@ var spaceLines = 0;
 
 var Options = {
 
-	main: "main.js",
-
-	output: "z80.js",
-
 	enumHex: true,
 
 	commentEscape: true,
@@ -31,7 +27,6 @@ var Options = {
 	trimIncludes: true,
 
 	spaceLineLimit: 0
-
 };
 
 
@@ -41,16 +36,29 @@ var Options = {
 // Errors
 
 function Error(msg) {
-	console.log(msg);
+	console.log('\x1b[31m');
+	console.log('The compiler has stopped on an error')
+	console.log('\x1b[1;31mError: %s\x1b[0m', msg);
 	process.exit(1);
 }
+
+
+
+// Read arguments
+
+if (process.argv[2] === undefined || process.argv[3] === undefined)
+	Error("input and output files are required");
+
+var mainFile = process.argv[2];
+var outputFile = process.argv[3];
+
 
 
 
 // String prototype
 
 function escapeRegExp(str) {
-    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
 
 String.prototype.startsWith = function (str) {
@@ -66,7 +74,7 @@ String.prototype.replaceAll = function(find, replace) {
 };
 
 String.prototype.splice = function( idx, rem, s ) {
-    return (this.slice(0,idx) + s + this.slice(idx + rem));
+	return (this.slice(0,idx) + s + this.slice(idx + rem));
 };
 
 
@@ -74,7 +82,7 @@ String.prototype.splice = function( idx, rem, s ) {
 var StringArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_";
 
 String.prototype.isInSA = function(i) {
-    return StringArray.indexOf(this[i]) != -1;
+	return StringArray.indexOf(this[i]) != -1;
 };
 
 function isInSA(c) {
@@ -218,7 +226,7 @@ function addConstantes(l) {
 
 
 			if (params.length != f.n)  {
-				Error("Macro length");
+				Error('not the right number of argument for macro "' + i + '"');
 			}
 
 			str = f.c[0];
@@ -245,8 +253,14 @@ function addConstantes(l) {
 
 function ParseFile(fileName) {
 
-	var txt = fs.readFileSync(fileName),
-		array = txt.toString().split('\n'),
+	try {
+		var txt = fs.readFileSync(fileName);
+	} catch(e) {
+		Error('can\'t read file: "' + fileName + '"');
+	}
+	
+
+	var array = txt.toString().split('\n'),
 		index = 0;
 
 
@@ -483,7 +497,18 @@ function ParseFile(fileName) {
 
 
 
+// Parse the main file
 
-fs.writeFileSync(Options.output, ParseFile(Options.main));
+var outputTxt = ParseFile(mainFile);
 
-console.log("Done in %ss", (Date.now() - startTime) / 1000);
+try {
+	fs.writeFileSync(outputFile, outputTxt);
+} catch(e) {
+	Error('Unable to write the output file "' + outputFile + '"');
+}
+
+
+// Display time
+
+console.log('\x1b[1;32m');
+console.log("Done in %ss\x1b[0m", (Date.now() - startTime) / 1000);
