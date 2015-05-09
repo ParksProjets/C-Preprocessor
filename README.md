@@ -3,22 +3,30 @@ This is a C like preprocessor for Javascript, using Node.js
 
 
 ## Compile a JS file
+Run compiler.js with Node.js and pass your main file and output file in arguments.
+```
+node compiler.js mainFile.js outputFile.js
+```
+
+## Customize options
 ```js
-// Modify options in compiler.js
 var Options = {
-	main: "main.js",
-	output: "output.js",
+	
+	// Write numbers in hexadcimal in #enum
 	enumHex: true,
+	
+	// Allow all line stating with '#' as a comment
 	commentEscape: true,
+	
+	// Trim include files
 	trimIncludes: true,
+	
+	// Limits of empty following lines
 	spaceLineLimit: 0
 };
 ```
 
-Then run compiler.js with Node.js
-```
-node compiler.js
-```
+
 
 
 
