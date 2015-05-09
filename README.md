@@ -24,30 +24,25 @@ Include and parse a file.
 Create a constant or a macro.
 
 
-##### Define
+##### Undefine
 ```c
 #undef MY_CONST
 ```
 Delete a constant or a macro.
 
 
+##### Condition
 ```c
 #ifdef MY_CONST
-
   // Do stuff
-  
 #endif
-```
-Condition: do stuff if the constant is defined
 
-```c
 #ifndef MY_CONST
-
   // Do stuff
-  
 #endif
 ```
-Condition: do stuff if the constant is undefined
+Condition: do stuff if the constant is defined/undefined
+
 
 
 ### Extra
