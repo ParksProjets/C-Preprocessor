@@ -71,12 +71,26 @@ if (require.main === module) {
 
 // Call with require()
 
+
+function modifyOptions(options) {
+
+	if (!options || typeof options != "object")
+		return;
+
+	for (var i in options)
+		compiler.o[i] = options[i];
+}
+
+
+
 module.exports = {
 
 	compile: function(file, options, callback) {
 
 		if (typeof options == "function")
 			callback = options;
+		else
+			modifyOptions(options);
 
 		var result;
 
@@ -96,6 +110,8 @@ module.exports = {
 
 		if (typeof options == "function")
 			callback = options;
+		else
+			modifyOptions(options);
 
 		var result;
 

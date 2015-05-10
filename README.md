@@ -22,12 +22,12 @@ node index.js mainFile.js outputFile.js
 ```js
 var compiler = require("compile-js-like-c");
 
-compiler.compile("file.js", function(err, str) {
+compiler.compile("file.js", [ options, ] function(err, result) {
 
 	if (err)
 		return console.log(err);
 
-	console.log(str);
+	console.log(result);
 });
 ```
 
@@ -35,19 +35,20 @@ compiler.compile("file.js", function(err, str) {
 
 
 ## Customize options
+This are the defaults options. You can modify this by passing an option object in "compiler.compile"
 ```js
-var Options = {
+var options = {
 	
 	// Write numbers in hexadcimal in #enum
 	enumHex: true,
 	
-	// Allow all line stating with '#' as a comment
+	// Consider every line stating with '#' as a comment
 	commentEscape: true,
 	
 	// Trim include files
 	trimIncludes: true,
 	
-	// Limits of empty following lines
+	// Limits of empty following lines (0 = no limit)
 	spaceLineLimit: 0
 };
 ```
