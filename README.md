@@ -1,12 +1,36 @@
-# Compile JS like C
-This is a C like preprocessor for Javascript, using Node.js
+Compile JS like C
+=================
+
+
+
+## Installation
+
+  npm install compile-js-like-c --save
 
 
 ## Compile a JS file
+
+### In command line
 Run compiler.js with Node.js and pass your main file and output file in arguments.
 ```
 node compiler.js mainFile.js outputFile.js
 ```
+
+### With require()
+```js
+var compiler = require("compile-js-like-c");
+
+compiler.compile("file.js", function(err, str) {
+
+	if (err)
+		return console.log(err);
+
+	console.log(str);
+});
+```js
+
+
+
 
 ## Customize options
 ```js

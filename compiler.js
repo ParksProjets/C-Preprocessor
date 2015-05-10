@@ -33,25 +33,11 @@ var Options = {
 
 
 
-// Errors
+// errors
 
-function Error(msg) {
-	console.log('\x1b[31m');
-	console.log('The compiler has stopped on an error')
-	console.log('\x1b[1;31mError: %s\x1b[0m', msg);
-	process.exit(1);
+function error(msg) {
+	throw new Error(msg);
 }
-
-
-
-// Read arguments
-
-if (process.argv[2] === undefined || process.argv[3] === undefined)
-	Error("input and output files are required");
-
-var mainFile = process.argv[2];
-var outputFile = process.argv[3];
-
 
 
 
@@ -95,7 +81,7 @@ function isInSA(c) {
 
 
 
-// Constantes
+// Constants
 
 var Constantes = {};
 
@@ -161,7 +147,7 @@ function AddFunction(name, params, content) {
 
 
 
-// Add constantes and macro to a string
+// Add constants and macros to a string
 
 function addConstantes(l) {
 
@@ -226,7 +212,7 @@ function addConstantes(l) {
 
 
 			if (params.length != f.n)  {
-				Error('not the right number of argument for macro "' + i + '"');
+				error('not the right number of argument for macro "' + i + '"');
 			}
 
 			str = f.c[0];
@@ -251,12 +237,16 @@ function addConstantes(l) {
 
 // Parse a file
 
-function ParseFile(fileName) {
+function ParseFile(fileContent, isContent) {
 
-	try {
-		var txt = fs.readFileSync(fileName);
-	} catch(e) {
-		Error('can\'t read file: "' + fileName + '"');
+	if (!isContent) {
+		try {
+			var txt = fs.readFileSync(fileContent);
+		} catch(e) {
+			error('can\'t read file: "' + fileContent + '"');
+		}
+	} else {
+		var txt = fileContent;
 	}
 	
 
@@ -497,18 +487,7 @@ function ParseFile(fileName) {
 
 
 
-// Parse the main file
-
-var outputTxt = ParseFile(mainFile);
-
-try {
-	fs.writeFileSync(outputFile, outputTxt);
-} catch(e) {
-	Error('Unable to write the output file "' + outputFile + '"');
-}
-
-
-// Display time
-
-console.log('\x1b[1;32m');
-console.log("Done in %ss\x1b[0m", (Date.now() - startTime) / 1000);
+module.exports = {
+	p: ParseFile,
+	o: Options
+};
