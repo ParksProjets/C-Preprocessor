@@ -5,7 +5,9 @@ Compile JS like C
 
 ## Installation
 
-  npm install compile-js-like-c --save
+```
+npm install compile-js-like-c --save
+```
 
 
 ## Compile a JS file
@@ -13,7 +15,7 @@ Compile JS like C
 ### In command line
 Run compiler.js with Node.js and pass your main file and output file in arguments.
 ```
-node compiler.js mainFile.js outputFile.js
+node index.js mainFile.js outputFile.js
 ```
 
 ### With require()
@@ -27,7 +29,7 @@ compiler.compile("file.js", function(err, str) {
 
 	console.log(str);
 });
-```js
+```
 
 
 
