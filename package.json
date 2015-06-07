@@ -1,7 +1,7 @@
 {
 	"name": "compile-js-like-c",
 	"description": "Compile JS like C.",
-	"version": "0.0.7",
+	"version": "0.1.1",
 	"author": {
 		"name": "Guillaume Gonnet",
 		"url": "https://github.com/ParksProjets"

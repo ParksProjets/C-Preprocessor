@@ -5,17 +5,23 @@ Compile JS like C
 
 ## Installation
 
+For local installation, run the following command:
 ```
 npm install compile-js-like-c --save
+```
+
+For global installation, run the following command:
+```
+npm install -g compile-js-like-c
 ```
 
 
 ## Compile a JS file
 
 ### In command line
-Run compiler.js with Node.js and pass your main file and output file in arguments.
+If you have installed this package in global, you can run "compile-like-c" and pass your main file and output file in arguments.
 ```
-node index.js mainFile.js outputFile.js
+compile-like-c mainFile.js outputFile.js
 ```
 
 ### With require()
@@ -90,9 +96,11 @@ Delete a constant or a macro.
 ```c
 #ifdef MY_CONST
   // Do stuff
+#else
+  // Do other stuff
 #endif
 
-#ifndef MY_CONST
+#ifndef MY_CONST2
   // Do stuff
 #endif
 ```
