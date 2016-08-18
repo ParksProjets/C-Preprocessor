@@ -73,7 +73,7 @@ function run(err, code) {
 		r2 = sandbox.r2;
 
 	// Test the result
-	if (r1 && r2)
+	if (r1 === true && r2 === true)
 		test.success();
 	else
 		test.error(`we didn't got all 'true': ${r1}, ${r2}`);

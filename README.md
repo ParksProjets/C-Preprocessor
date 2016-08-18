@@ -61,7 +61,7 @@ c.compileFile(fileName);
 
 
 ## Customize options
-This are the defaults options. You can modify this by passing an option object
+This are the defaults options. You can modify this by passing an option object.
 ```js
 var options = {
 
@@ -135,7 +135,7 @@ Delete a constant or a macro.
 #endif
 ```
 Condition: C like conditions.  
-Note: *#ifdef C* and *#ifndef C* are faster than *#if defined(C)* and *#if !defined(C)*.
+Note: `#ifdef C` and `#ifndef C` are faster than `#if defined(C)` and `#if !defined(C)`.
 
 
 ##### Pragma once
@@ -173,4 +173,5 @@ Note: `options.commentEscape` must be `true`.
   Car, Bike, Truck
 #endenum
 ```
-C like enumeration. Use this command for creating a lot of constants.
+C like enumeration.  
+Use this command for creating a lot of constants.
