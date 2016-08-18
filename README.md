@@ -1,18 +1,20 @@
-Compile JS like C
-=================
+C Preprocessor
+===============
 
+C Preprocessor is a Javascript preprocessor running like a C preprocessor with # commands.
+See changelog [here](../blob/master/CHANGELOG.md).
 
 
 ## Installation
 
 For local installation, run the following command:
 ```
-npm install compile-js-like-c --save
+npm install c-preprocessor --save
 ```
 
 For global installation, run the following command:
 ```
-npm install -g compile-js-like-c
+npm install -g c-preprocessor
 ```
 
 
@@ -21,44 +23,70 @@ npm install -g compile-js-like-c
 ### In command line
 If you have installed this package in global, you can run "compile-like-c" and pass your main file and output file in arguments.
 ```
-compile-like-c mainFile.js outputFile.js
+c-preprocessor mainFile.js outputFile.js
 ```
 
 ### With require()
 ```js
-var compiler = require("compile-js-like-c");
+var compiler = require("c-preprocessor");
 
-compiler.compile("file.js", [ options, ] function(err, result) {
+
+// To compile a file
+compiler.compileFile(fileName, [ options, ] function(err, result) {
 
 	if (err)
 		return console.log(err);
 
 	console.log(result);
 });
+
+
+// To compile a text
+compiler.compile(code, [ options, ] function(err, result) {
+	// ...
+});
+
+
+// Or use Compiler class
+var c = new compiler.Compiler([options]);
+c.on('success', /* ... */)
+c.on('error', /* ... */)
+
+c.compile(code);
+// or
+c.compileFile(fileName);
 ```
 
 
 
 
 ## Customize options
-This are the defaults options. You can modify this by passing an option object in "compiler.compile"
+This are the defaults options. You can modify this by passing an option object
 ```js
 var options = {
-	
-	// Write numbers in hexadcimal in #enum
-	enumHex: true,
-	
-	// Consider every line stating with '#' as a comment
+
+	// End of line character
+	endLine: '\n',
+
+	// Escape '//#' & '/*#' comments (see extra/comments)
 	commentEscape: true,
 	
-	// Trim include files
-	trimIncludes: true,
+	// Empty lines to add between code and included files
+	includeSpaces: 1,
 	
-	// Limits of empty following lines (0 = no limit)
-	spaceLineLimit: 0
+	// Limit of empty following lines (0 = no limit)
+	emptyLinesLimit: 0,
+
+	// Base path for including files
+	basePath: './',
+
+	// Stop the compiler when an error ocurred ?
+	stopOnError: true,
+
+	// Constants in #enum command must be in hexadecimal ?
+	enumInHex: true
 };
 ```
-
 
 
 
@@ -80,7 +108,7 @@ Include and parse a file.
 #define MY_CONST 42
 
 // Define a macro
-#define SUM(a,b) a+b
+#define SUM(a,b) a + b
 ```
 Create a constant or a macro.
 
@@ -94,8 +122,10 @@ Delete a constant or a macro.
 
 ##### Condition
 ```c
-#ifdef MY_CONST
+#if A + B == 5 && defined(MY_CONST)
   // Do stuff
+#elif !defined(MY_CONST2)
+  // Do other stuff
 #else
   // Do other stuff
 #endif
@@ -104,8 +134,15 @@ Delete a constant or a macro.
   // Do stuff
 #endif
 ```
-Condition: do stuff if the constant is defined/undefined
+Condition: C like conditions.
+Note: *#ifdef C* and *#ifndef C* are faster than *#if defined(C)* and *#if !defined(C)*.
 
+
+##### Pragma once
+```c
+#pragma once
+```
+Include the current file once.
 
 
 ### Extra
@@ -121,13 +158,19 @@ Multi-line comment
 #*/
 ```
 This comments will be delete in the compiled file.
+Note: `options.commentEscape` must be `true`.
 
 
 ##### Enumeration
 ```c
-// Here BIT0_B = 0, BIT0_C = 1, BIT0_D = 2, BIT0_E = 3
+// Here A=0, ..., D=3
 #enum
-  BIT0_B, BIT0_C, BIT0_D, BIT0_E
+  A, B, C, D
+#endenum
+
+// With options, so Car=5, .., Truck=25
+#enum start=5, step=10
+  Car, Bike, Truck
 #endenum
 ```
-C like enumeration.
+C like enumeration. Use this command for creating a lot of constants.

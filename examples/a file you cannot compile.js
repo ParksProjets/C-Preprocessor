@@ -1,6 +1,6 @@
 /*
 
-Test 2
+This file cannot be compiled and produces an error
 
 */
 
@@ -12,7 +12,7 @@ Test 2
 
 #ifdef OK
 	
-	console.log('It don\'t works !');
+	console.log('It doesn\'t work !');
 
 #endif
 

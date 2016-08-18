@@ -2,5 +2,5 @@
 
 Compile the sources with this command:
 ```
-compile-like-c "src/main.js" "compiler.js"
+c-preprocessor "src/main.js" "compiler.js"
 ```

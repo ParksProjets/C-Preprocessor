@@ -1,6 +1,6 @@
 /*
 
-Test 1
+This file can be compiled without error
 
 */
 

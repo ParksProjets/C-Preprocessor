@@ -1,9 +1,9 @@
 /*
 
-Compile JS like C
+C Preprocessor
 
 
-© 2015 - Guillaume Gonnet
+© 2016 - Guillaume Gonnet
 License GPLv2
 
 Source at https://github.com/ParksProjets/Compile-JS-like-C
@@ -11,61 +11,63 @@ Source at https://github.com/ParksProjets/Compile-JS-like-C
 */
 
 
-var compiler = require('./lib/compiler.js');
+// Get the lib object
+var lib = require('./lib/compiler.js');
+
+
+// Export Compiler class
+exports.Compiler = lib.Compiler;
 
 
 
-function modifyOptions(options) {
+// Quick access: compile a code
+exports.compile = function(code, options, callback) {
 
-	if (!options || typeof options != "object")
-		return;
-
-	for (var i in options)
-		compiler.o[i] = options[i];
-}
-
-
-
-module.exports = {
-
-	compile: function(file, options, callback) {
-
-		if (typeof options == "function")
-			callback = options;
-		else
-			modifyOptions(options);
-
-		var result;
-
-		try {
-			result = compiler.p(file);
-		} catch(e) {
-			callback(e, '');
-			return;
-		}
-
-		callback(null, result);
-	},
-
-
-
-	compileStr: function(str, options, callback) {
-
-		if (typeof options == "function")
-			callback = options;
-		else
-			modifyOptions(options);
-
-		var result;
-
-		try {
-			compiler.p(str, true);
-		} catch(e) {
-			callback(e, '');
-			return;
-		}
-
-		callback(null, result);
+	// If there isn't an option but a callback
+	if (typeof options == "function") {
+		callback = options;
+		options = null;
 	}
 
+
+	// Create the compiler and attach it the callback
+	var compiler = new lib.Compiler(options);
+
+	compiler.once('error', function(msg) {
+		callback && callback(msg, null);
+	});
+
+	compiler.once('success', function(result) {
+		callback && callback(null, result);
+	});
+
+	compiler.compile(code);
+};
+
+
+
+
+
+// Quick access: compile a file
+exports.compileFile = function(file, options, callback) {
+
+	// If there isn't an option but a callback
+	if (typeof options == "function") {
+		callback = options;
+		options = null;
+	}
+
+
+	// Create the compiler and attach it the callback
+	var compiler = new lib.Compiler(options);
+
+	compiler.once('error', function(msg) {
+		callback && callback(msg, null);
+	});
+
+	compiler.once('success', function(result) {
+		callback && callback(null, result);
+	});
+
+	compiler.compileFile(code);
 };

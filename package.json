@@ -1,16 +1,23 @@
 {
-	"name": "compile-js-like-c",
-	"description": "Compile JS like C.",
-	"version": "0.1.2",
+	"name": "c-preprocessor",
+	"description": "Preprocess JS files like C files.",
+	"version": "0.2.1",
+
 	"author": {
 		"name": "Guillaume Gonnet",
 		"url": "https://github.com/ParksProjets"
 	},
-	"repository": "ParksProjets/compile-js-like-c",
+	"repository": "ParksProjets/C-Preprocessor",
 	"license": {
 		"type": "GPLv2",
-		"url": "https://github.com/ParksProjets/compile-js-like-c/blob/master/LICENSE"
+		"url": "https://github.com/ParksProjets/C-Preprocessor/blob/master/LICENSE"
 	},
+
+	"main": "index.js",
+	"scripts": {
+		"test": "node test/all.js"
+	},
+
 	"keywords": [
 		"preprocessor",
 		"compile",
@@ -22,9 +29,11 @@
 		"lib",
     	"bin"
 	],
+
 	"bin": {
-		"compile-like-c": "./bin/global.js"
+		"c-preprocessor": "./bin/global.js"
 	},
+
 	"dependencies": {
 	}
 }
