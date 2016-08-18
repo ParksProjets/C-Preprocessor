@@ -1,4 +1,4 @@
-## Version 0.2.1 (18/08/2016)
+## Version 0.2.2 (18/08/2016)
 
 	- Complete rewriting of Compile-Js-like-C
 	- Rename **Compile-Js-like-C** to **C-Preprocessor**

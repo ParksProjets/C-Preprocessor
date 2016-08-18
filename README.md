@@ -1,8 +1,8 @@
 C Preprocessor
 ===============
 
-C Preprocessor is a Javascript preprocessor running like a C preprocessor with # commands.
-See changelog [here](../blob/master/CHANGELOG.md).
+C Preprocessor is a Javascript preprocessor running like a C preprocessor with # commands.  
+See changelog [here](../master/CHANGELOG.md).
 
 
 ## Installation
@@ -134,7 +134,7 @@ Delete a constant or a macro.
   // Do stuff
 #endif
 ```
-Condition: C like conditions.
+Condition: C like conditions.  
 Note: *#ifdef C* and *#ifndef C* are faster than *#if defined(C)* and *#if !defined(C)*.
 
 
@@ -157,7 +157,7 @@ Multi-line comment
 
 #*/
 ```
-This comments will be delete in the compiled file.
+This comments will be delete in the compiled file.  
 Note: `options.commentEscape` must be `true`.
 
 
