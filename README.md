@@ -20,13 +20,13 @@ npm install -g c-preprocessor
 
 ## Compile a JS file
 
-### In command line
-If you have installed this package in global, you can run "compile-like-c" and pass your main file and output file in arguments.
+#### In command line
+If you have installed this package in global, you can run **c-preprocessor** and pass your main file and output file in arguments.
 ```
 c-preprocessor mainFile.js outputFile.js
 ```
 
-### With require()
+#### With require()
 ```js
 var compiler = require("c-preprocessor");
 
