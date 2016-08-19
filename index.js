@@ -69,5 +69,5 @@ exports.compileFile = function(file, options, callback) {
 		callback && callback(null, result);
 	});
 
-	compiler.compileFile(code);
+	compiler.compileFile(file);
 };

@@ -72,7 +72,7 @@ var options = {
 	commentEscape: true,
 	
 	// Empty lines to add between code and included files
-	includeSpaces: 1,
+	includeSpaces: 0,
 	
 	// Limit of empty following lines (0 = no limit)
 	emptyLinesLimit: 0,

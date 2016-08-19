@@ -88,7 +88,7 @@ function run(err, code) {
 		r2 = sandbox.r2,
 		r3 = sandbox.r3;
 
-	// Test the result
+	// Test the results
 	if (r1 && r2 && r3)
 		test.success();
 	else

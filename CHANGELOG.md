@@ -1,3 +1,10 @@
+## Version 0.2.6 (19/08/2016)
+
+  - Fix issue: multiple calls of success event
+  - Set `options.includeSpaces` to `0` by default
+  - Fix CLI command
+
+
 ## Version 0.2.5 (18/08/2016)
 
   - Complete rewriting of Compile-Js-like-C

@@ -1,6 +1,6 @@
 /*
 
-File to include once for the #include & #pragma test
+File to include once for the #include & #pragma tests
 
 
 © 2016 - Guillaume Gonnet

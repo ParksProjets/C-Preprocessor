@@ -26,18 +26,20 @@ var test = utils.test('#define macro');
 var a = Math.round(Math.random() * 100),
 	b = Math.round(Math.random() * 100),
 	c1 = a * 5,
-	c2 = a + b - 74;
+	c2 = a + b*5 - 74;
 
 
 
 // Code to parse
 var str = `
 
+#define NUM 74
+
 #define MACRO1(a) a*5
 #define MACRO2(a,b,c) a+b-c
 
 var r1 = MACRO1(${a}),
-	r2 = MACRO2(${a},${b},74);
+	r2 = MACRO2(${a}, MACRO1(${b}), NUM);
 
 `;
 
