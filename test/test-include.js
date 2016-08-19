@@ -28,13 +28,12 @@ var str = `
 var r = false;
 
 //# This test is running in the base folder
-#include "test/file-to-include.js"
 #include "test/file-to-include-once.js"
 
-var n1 = NUMBER,
-	n2 = NUMBER_2;
+var n2 = NUMBER_2;
 
-`;
+// Include another file
+#include "test/file-to-include.js"`;
 
 
 
@@ -57,15 +56,14 @@ function run(err, code) {
 
 
 	// Results
-	var n1 = sandbox.n1,
-		n2 = sandbox.n2,
+	var n2 = sandbox.n2,
 		r = sandbox.r;
 
 	// Test the results
-	if (n1 == 42 && n2 == 56 && r)
+	if (n2 == 56 && r)
 		test.success();
 	else
-		test.error(`some variables don't have the right value: n1=${n1}, n2=${n2}, r=${r}`);
+		test.error(`some variables don't have the right value: n2=${n2}, r=${r}`);
 }
 
 

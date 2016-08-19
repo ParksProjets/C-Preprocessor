@@ -1,6 +1,7 @@
-## Version 0.2.6 (19/08/2016)
+## Version 0.2.7 (19/08/2016)
 
   - Fix issue: multiple calls of success event
+  - Fix issue: the last line of the file wasn't parsed
   - Set `options.includeSpaces` to `0` by default
   - Fix CLI command
 
