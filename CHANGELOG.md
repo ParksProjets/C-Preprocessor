@@ -1,3 +1,11 @@
+## Version 0.2.8 (08/12/2016)
+
+  - Make **C-Preprocessor** a bit faster for parsing lines
+  - Add `options.constants` for adding predefined constants
+  - Add `options.macros` for adding predefined macros
+  - Fix macros with another macro with several parameters
+
+
 ## Version 0.2.7 (19/08/2016)
 
   - Fix issue: multiple calls of success event

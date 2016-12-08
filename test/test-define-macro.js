@@ -25,9 +25,14 @@ var test = utils.test('#define macro');
 // Results
 var a = Math.round(Math.random() * 100),
 	b = Math.round(Math.random() * 100),
-	c1 = a * 5,
-	c2 = a + b*5 - 74;
+	c1 = a * 5 * 7,
+	c2 = a*(b+12)*5*5 - 74;
 
+
+// Pre-defined macros
+var macros = {
+	"SUM": "(var1, var2) (var1 + var2)"
+};
 
 
 // Code to parse
@@ -35,11 +40,11 @@ var str = `
 
 #define NUM 74
 
-#define MACRO1(a) a*5
-#define MACRO2(a,b,c) a+b-c
+#define MACRO1(a,b) a*5*b
+#define MACRO2(a,b2,c) MACRO1(a,b2)-c
 
-var r1 = MACRO1(${a}),
-	r2 = MACRO2(${a}, MACRO1(${b}), NUM);
+var r1 = MACRO1(${a}, 7),
+	r2 = MACRO2(${a}, MACRO1(SUM(${b}, 12), 1), NUM);
 
 `;
 
@@ -79,7 +84,7 @@ function run(err, code) {
 
 // Compile the code
 try {
-	compiler.compile(str, run);
+	compiler.compile(str, { macros: macros }, run);
 } catch(e) {
 	test.error(`compiler execution failed -> ${e.message}`);
 }

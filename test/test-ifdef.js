@@ -40,10 +40,10 @@ var str = `
 	var r1 = false;
 #endif
 
-#ifdef VARIABLE_2
-	var r2 = false;
-#else
+#ifndef VARIABLE_2
 	var r2 = true;
+#else
+	var r2 = false;
 #endif
 
 `;

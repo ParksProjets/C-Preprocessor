@@ -60,10 +60,10 @@ function run(err, code) {
 		r = sandbox.r;
 
 	// Test the results
-	if (n2 == 56 && r)
+	if (n2 == 56 && r == true)
 		test.success();
 	else
-		test.error(`some variables don't have the right value: n2=${n2}, r=${r}`);
+		test.error(`the expected results were 56 and true but we got ${n2} and ${r}`);
 }
 
 

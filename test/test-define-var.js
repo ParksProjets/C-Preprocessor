@@ -25,8 +25,14 @@ var test = utils.test('#define variable');
 // Results
 var a = Math.round(Math.random() * 100),
 	b = Math.round(Math.random() * 100),
-	c = a + b;
+	c = 200 + Math.round(Math.random() * 100),
+	d = a + b;
 
+
+// Pre-defined constants
+var constants = {
+	"VARIABLE_3": c
+};
 
 
 // Code to parse
@@ -35,7 +41,8 @@ var str = `
 #define VARIABLE ${a}
 #define VARIABLE_2 ${b}
 
-var result = VARIABLE + VARIABLE_2;
+var r1 = VARIABLE + VARIABLE_2,
+	r2 = VARIABLE_3;
 
 `;
 
@@ -59,14 +66,15 @@ function run(err, code) {
 	}
 
 
-	// Result
-	var r = sandbox.result;
+	// Results
+	var r1 = sandbox.r1,
+		r2 = sandbox.r2;
 
-	// Test the result
-	if (r == c)
+	// Test the results
+	if (r1 == d && r2 == c)
 		test.success();
 	else
-		test.error(`the expected result was ${c} but we got ${r}`);
+		test.error(`the expected result were ${d} and ${c} but we got ${r1} and ${r2}`);
 }
 
 
@@ -74,7 +82,7 @@ function run(err, code) {
 
 // Compile the code
 try {
-	compiler.compile(str, run);
+	compiler.compile(str, { constants: constants }, run);
 } catch(e) {
 	test.error(`compiler execution failed -> ${e.message}`);
 }

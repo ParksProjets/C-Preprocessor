@@ -64,6 +64,12 @@ c.compileFile(fileName);
 This are the defaults options. You can modify this by passing an option object.
 ```js
 var options = {
+	
+	// Predefined constants (ex: { "MY_CONST": "42" })
+	constants: {},
+
+	// Predefined macros (ex: { "MACRO": "(a,b) a+b" })
+	macro: {},
 
 	// End of line character
 	endLine: '\n',
