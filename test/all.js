@@ -1,36 +1,25 @@
 /*
 
-Starts all tests
+Start all tests
 
 
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/Compile-JS-like-C
+Source at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
 
-// #include test
-require('./test-include');
+var fs = require('fs');
 
-// #define variable test
-require('./test-define-var');
 
-// #define macro test
-require('./test-define-macro');
+// Run all js files in the 'tests' folder
+fs.readdir('test/tests', function(err, files) {
 
-// #undef test
-require('./test-undef');
+	if (err)
+		return console.error("Can't read 'test/tests' folder");
 
-// #ifdef test
-require('./test-ifdef');
-
-// #if test
-require('./test-if');
-
-// #pragma test
-require('./test-pragma');
-
-// #enum test
-require('./test-enum');
+	for (var i = 0, l = files.length; i < l; i++)
+		require('./tests/' + files[i])
+});

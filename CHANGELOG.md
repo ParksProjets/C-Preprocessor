@@ -1,9 +1,17 @@
+## Version 0.2.9 (17/12/2016)
+
+  - Update README.md
+  - Add `__TIME__` and `__DATE__` constants
+  - Add `#error` command
+  - Clean unit tests
+
+
 ## Version 0.2.8 (08/12/2016)
 
   - Make **C-Preprocessor** a bit faster for parsing lines
   - Add `options.constants` for adding predefined constants
   - Add `options.macros` for adding predefined macros
-  - Fix macros with another macro with several parameters
+  - Fix issue: macros with another macro with several parameters
 
 
 ## Version 0.2.7 (19/08/2016)
@@ -26,7 +34,7 @@
 ## Version 0.1.2 (07/01/2016)
 
   - Fix end of lines
-  - Fix macro and constants system
+  - Fix macros and constants system
 
 
 ## Version 0.1.1 (07/06/2015)

@@ -1,7 +1,10 @@
 C Preprocessor
 ===============
 
-C Preprocessor is a Javascript preprocessor running like a C preprocessor with # commands.  
+C Preprocessor is a preprocessor created with Node.js only and
+running like a C preprocessor with **#** commands.  
+It was originally designed for Javascript but you can use it
+with any language you want.  
 See changelog [here](../master/CHANGELOG.md).
 
 
@@ -18,7 +21,7 @@ npm install -g c-preprocessor
 ```
 
 
-## Compile a JS file
+## Compile a file/text
 
 #### In command line
 If you have installed this package in global, you can run **c-preprocessor** and pass your main file and output file in arguments.
@@ -61,7 +64,7 @@ c.compileFile(fileName);
 
 
 ## Customize options
-This are the defaults options. You can modify this by passing an option object.
+This are the defaults options. You can modify them by passing an option object.
 ```js
 var options = {
 	
@@ -89,7 +92,7 @@ var options = {
 	// Stop the compiler when an error ocurred ?
 	stopOnError: true,
 
-	// Constants in #enum command must be in hexadecimal ?
+	// Must constants in #enum command be in hexadecimal ?
 	enumInHex: true
 };
 ```
@@ -130,17 +133,19 @@ Delete a constant or a macro.
 ```c
 #if A + B == 5 && defined(MY_CONST)
   // Do stuff
-#elif !defined(MY_CONST2)
+#elif "MY_CONST2" == "House"
   // Do other stuff
 #else
   // Do other stuff
 #endif
 
-#ifndef MY_CONST2
+#ifndef MY_CONST3
   // Do stuff
 #endif
 ```
-Condition: C like conditions.  
+C like conditions.  
+`#if` condition is evaluated in JS so you must add **"** between string
+constants.  
 Note: `#ifdef C` and `#ifndef C` are faster than `#if defined(C)` and `#if !defined(C)`.
 
 
@@ -151,7 +156,23 @@ Note: `#ifdef C` and `#ifndef C` are faster than `#if defined(C)` and `#if !defi
 Include the current file once.
 
 
+##### Error
+```c
+#error This is an error
+```
+Stop the compiler and log the message given after the command.
+
+
+
 ### Extra
+
+##### Compiler constants
+```c
+__TIME__ // Current time
+__DATE__ // Current date
+```
+This constants are predefined by the compiler.
+
 
 ##### Comments
 ```c
@@ -159,11 +180,11 @@ Include the current file once.
 
 /*#
 
-Multi-line comment
+Multi-lines comment
 
 #*/
 ```
-This comments will be delete in the compiled file.  
+This comments will be deleted in the compiled file.  
 Note: `options.commentEscape` must be `true`.
 
 
@@ -180,4 +201,4 @@ Note: `options.commentEscape` must be `true`.
 #endenum
 ```
 C like enumeration.  
-Use this command for creating a lot of constants.
+You can use this command for creating a lot of constants.
