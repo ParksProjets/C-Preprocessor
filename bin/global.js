@@ -5,16 +5,17 @@
 C Preprocessor, CLI
 
 
-© 2016 - Guillaume Gonnet
+© 2017 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
 
 // Libraries
 var fs = require('fs'),
+	path = require('path'),
 	compiler = require('../index.js');
 
 
@@ -36,11 +37,24 @@ function error(msg) {
 
 
 // Read CLI arguments
-if (process.argv[2] === undefined || process.argv[3] === undefined)
-	error("input and output files are required");
+if (process.argv[2] === undefined)
+	error("input file are required");
 
+// Files path
 var inputFile = process.argv[2];
 var outputFile = process.argv[3];
+
+
+// If the output file is not specified
+if (!outputFile) {
+	var parsed = path.parse(inputFile),
+		dir = parsed.dir ? parsed.dir+'/' : '',
+		name = parsed.name,
+		ext = parsed.ext;
+
+	outputFile = dir + name + '-built' + ext;
+}
+
 
 
 

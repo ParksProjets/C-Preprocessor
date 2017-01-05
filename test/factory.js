@@ -6,7 +6,7 @@ Test factory
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
@@ -95,7 +95,7 @@ Test.prototype.run = function(code) {
 				r = sandbox[n];
 
 			if (e !== r)
-				return _this.error(`the expected value of variable ${n} was ${e} but we got ${r}`);
+				return _this.error(`the expected value of variable ${n} was '${e}' but we got '${r}'`);
 		}
 
 
@@ -109,5 +109,6 @@ Test.prototype.run = function(code) {
 		compiler.compile(code, this.settings, run);
 	} catch(e) {
 		this.error(`compiler execution failed -> ${e.message}`);
+		console.log(e);
 	}
 };

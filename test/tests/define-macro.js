@@ -1,12 +1,12 @@
 /*
 
-Test the #define command for defining a macro
+Test the #define directive for defining a macro
 
 
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
@@ -25,6 +25,7 @@ var a = utils.randint(0, 100),
 // Expected results
 test.result('r1', a * 5 * 7);
 test.result('r2', a*(b+12)*5*5 - 74);
+test.result('str', 'Name -> This is (a) label');
 
 
 // Predefined macros
@@ -42,7 +43,11 @@ test.run(`
 #define MACRO1(a,b) a*5*b
 #define MACRO2(a,b2,c) MACRO1(a,b2)-c
 
+#define STR(name, label) name + " -> " + label
+
 var r1 = MACRO1(${a}, 7),
 	r2 = MACRO2(${a}, MACRO1(SUM(${b}, 12), 1), NUM);
+
+var str = STR('Name', 'This is (a) label')
 
 `);

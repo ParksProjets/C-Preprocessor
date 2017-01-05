@@ -1,6 +1,6 @@
 /*
 
-Test the #pragma command
+Test the #pragma directive
 
 
 © 2016 - Guillaume Gonnet

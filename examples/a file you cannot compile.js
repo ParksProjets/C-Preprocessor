@@ -2,6 +2,10 @@
 
 This file cannot be compiled and produces an error
 
+
+Sources at https://github.com/ParksProjets/C-Preprocessor
+License GPLv2
+
 */
 
 

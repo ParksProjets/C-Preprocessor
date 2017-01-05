@@ -15,3 +15,6 @@ Source at https://github.com/ParksProjets/C-Preprocessor
 
 #define NUMBER_2 56
 
+
+var file = "__FILE__";
+

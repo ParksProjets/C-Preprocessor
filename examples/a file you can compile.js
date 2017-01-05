@@ -1,6 +1,10 @@
 /*
 
-This file can be compiled without error
+This file can be compiled without errors
+
+
+Sources at https://github.com/ParksProjets/C-Preprocessor
+License GPLv2
 
 */
 

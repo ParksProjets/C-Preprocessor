@@ -2,7 +2,7 @@ C Preprocessor
 ===============
 
 C Preprocessor is a preprocessor created with Node.js only and
-running like a C preprocessor with **#** commands.  
+running like a C preprocessor with **#** directives.  
 It was originally designed for Javascript but you can use it
 with any language you want.  
 See changelog [here](../master/CHANGELOG.md).
@@ -75,7 +75,7 @@ var options = {
 	macro: {},
 
 	// End of line character
-	endLine: '\n',
+	newLine: '\n',
 
 	// Escape '//#' & '/*#' comments (see extra/comments)
 	commentEscape: true,
@@ -92,7 +92,7 @@ var options = {
 	// Stop the compiler when an error ocurred ?
 	stopOnError: true,
 
-	// Must constants in #enum command be in hexadecimal ?
+	// Must constants in #enum directive be in hexadecimal ?
 	enumInHex: true
 };
 ```
@@ -160,7 +160,7 @@ Include the current file once.
 ```c
 #error This is an error
 ```
-Stop the compiler and log the message given after the command.
+Stop the compiler and log the message given after the directive.
 
 
 
@@ -201,4 +201,4 @@ Note: `options.commentEscape` must be `true`.
 #endenum
 ```
 C like enumeration.  
-You can use this command for creating a lot of constants.
+You can use this directive for creating a lot of constants.

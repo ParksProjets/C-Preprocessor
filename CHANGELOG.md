@@ -1,3 +1,13 @@
+## Version 0.2.10 (05/01/2017)
+
+  - Add `__LINE__` and `__FILE__`
+  - Rename `options.endLine` to `options.newLine`
+  - Make optional the second argument of the CLI
+  - Tidy a bit the source code
+  - Fix issue: Replace line endings from CRLF to LF for macOS
+  - Fix issue: directives with a whitespace between # and their name
+
+
 ## Version 0.2.9 (17/12/2016)
 
   - Update README.md

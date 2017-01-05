@@ -6,7 +6,7 @@ C Preprocessor
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/Compile-JS-like-C
+Sources at https://github.com/ParksProjets/Compile-JS-like-C
 
 */
 

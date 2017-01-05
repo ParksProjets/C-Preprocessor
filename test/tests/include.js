@@ -1,12 +1,12 @@
 /*
 
-Test the #include command
+Test the #include directive
 
 
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
@@ -20,6 +20,8 @@ var utils = require('../utils.js'),
 // Expected results
 test.result('n2', 56);
 test.result('r', true);
+test.result('file', 'test/ressources/file-to-include-once.js');
+test.result('file2', 'main');
 
 
 
@@ -32,6 +34,7 @@ var r = false;
 #include "test/ressources/file-to-include-once.js"
 
 var n2 = NUMBER_2;
+var file2 = "__FILE__";
 
 // Include another file
 #include "test/ressources/file-to-include.js"`);

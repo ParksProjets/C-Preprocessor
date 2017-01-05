@@ -1,12 +1,12 @@
 /*
 
-Test the #if command
+Test the #if directive
 
 
-© 2016 - Guillaume Gonnet
+© 2017 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
@@ -27,6 +27,9 @@ test.result('r1', true);
 test.result('r2', true);
 test.result('r3', true);
 
+// Set the file name
+test.setting('filename', 'if-condition.js');
+
 
 
 // Run the test
@@ -36,16 +39,21 @@ var r3 = true;
 
 #define A ${a}
 #define B ${b}
-#define C ${a+b} 
+#define C ${a+b}
+
 
 #if defined(A) && !defined(D)
-	var r1 = true;
+#	if "__FILE__" == "if-condition.js"
+		var r1 = true;
+#	else
+		var r1 = false;
+#	endif
 #else
 	var r1 = false;
 #endif
 
 #if A + B != C
-	
+
 	#if A == 2
 		r3 = false;
 	#elif A == 4

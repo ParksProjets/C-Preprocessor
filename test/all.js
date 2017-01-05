@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 
 Start all tests
@@ -6,7 +8,7 @@ Start all tests
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 

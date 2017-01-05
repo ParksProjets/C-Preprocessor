@@ -1,12 +1,12 @@
 /*
 
-Test the #define command for defining a variable
+Test the #define directive for defining a variable
 
 
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 

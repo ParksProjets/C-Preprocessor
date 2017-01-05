@@ -1,6 +1,6 @@
 /*
 
-Test the #undef command
+Test the #undef directive
 
 
 © 2016 - Guillaume Gonnet

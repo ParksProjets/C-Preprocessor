@@ -6,7 +6,7 @@ Test the //# and /*# comments
 © 2016 - Guillaume Gonnet
 License GPLv2
 
-Source at https://github.com/ParksProjets/C-Preprocessor
+Sources at https://github.com/ParksProjets/C-Preprocessor
 
 */
 
@@ -23,7 +23,7 @@ test1.result('result', 0);
 test2.result('result', 25);
 
 
-// Diabled comment espace
+// Disable comment espace
 test2.setting('commentEscape', false);
 
 
