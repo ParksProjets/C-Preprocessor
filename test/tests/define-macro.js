@@ -26,6 +26,7 @@ var a = utils.randint(0, 100),
 test.result('r1', a * 5 * 7);
 test.result('r2', a*(b+12)*5*5 - 74);
 test.result('str', 'Name -> This is (a) label');
+test.result('f8', 21);
 
 
 // Predefined macros
@@ -45,9 +46,24 @@ test.run(`
 
 #define STR(name, label) name + " -> " + label
 
+#define MAT2(a,b,c,d) [a, b, c, d] // A 2x2 matrix
+
+#define MUL(m1,m2) [                 /* Multiplication of matrices */ \
+	(m1)[0]*(m2)[0] + (m1)[1]*(m2)[2], /* (0, 0)-element */             \
+	(m1)[0]*(m2)[1] + (m1)[2]*(m2)[3], /* (0, 1)-element */             \
+	(m1)[2]*(m2)[0] + (m1)[3]*(m2)[2], /* (1, 0)-element */             \
+	(m1)[2]*(m2)[1] + (m1)[3]*(m2)[3]] /* (1, 1)-element */
+
+
 var r1 = MACRO1(${a}, 7),
 	r2 = MACRO2(${a}, MACRO1(SUM(${b}, 12), 1), NUM);
 
 var str = STR('Name', 'This is (a) label')
+
+var m = MAT2(1,1,1,0);
+for (let i = 0; i < 3; ++i) {
+  m = MUL(m,m);
+}
+var f8 = m[1];
 
 `);
