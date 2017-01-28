@@ -1,0 +1,8 @@
+{
+	"constants": {
+		"MY_CONST": "42"
+	},
+	"macros": {
+		"SUM": "(a,b) a+b"
+	}
+}

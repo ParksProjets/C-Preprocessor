@@ -33,20 +33,59 @@ function error(msg) {
 	process.exit(1);
 }
 
+// Show help message
+function help() {
+	console.log('\n  Usage: c-preprocessor [options] input-file [output-file]');
+	console.log('\n  Options:');
+	console.log('\n    -c, --config  configuration file');
 
-
+	process.exit(1);
+}
 
 // Read CLI arguments
-if (process.argv[2] === undefined)
-	error("input file are required");
+var configFile;
+var inputFile;
+var outputFile;
 
-// Files path
-var inputFile = process.argv[2];
-var outputFile = process.argv[3];
+var i = 2;
+var n = process.argv.length;
+
+if (process.argv[i] === "--config" || process.argv[i] === "-c") {
+	++i;
+	if (i < n) {
+		configFile = process.argv[i++];
+	}
+	else {
+		help();
+	}
+}
+
+if (i < n) {
+	inputFile = process.argv[i++];
+}
+else {
+	help();
+}
+
+if (i < n) {
+	outputFile = process.argv[i++];
+}
+
+if (i < n) {
+	help();
+}
+
+
+
+// If config file is specified
+var options;
+if (configFile !== undefined) {
+	options = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+}
 
 
 // If the output file is not specified
-if (!outputFile) {
+if (outputFile === undefined) {
 	var parsed = path.parse(inputFile),
 		dir = parsed.dir ? parsed.dir+'/' : '',
 		name = parsed.name,
@@ -56,17 +95,14 @@ if (!outputFile) {
 }
 
 
+// Preprocess input file
+var c = new compiler.Compiler(options);
 
+c.on('error', function(err) {
+	return error(err);
+});
 
-
-// Parse the input file
-compiler.compileFile(inputFile, function(err, code) {
-
-	if (err)
-		return error(err);
-
-
-	// Save the result in the output file
+c.on('success', function(code) {
 	fs.writeFile(outputFile, code, function(err) {
 
 		if (err)
@@ -78,3 +114,6 @@ compiler.compileFile(inputFile, function(err, code) {
 		console.log(`Done in ${(Date.now() - startTime) / 1000}s\x1b[0m`);
 	});
 });
+
+c.compileFile(inputFile);
+
