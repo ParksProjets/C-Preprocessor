@@ -56,17 +56,23 @@ argv.error = function(msg) {
 
 
 
-// Show help message
-function help() {
+// Help argument
+argv.add('h', 'help', 0, function help() {
 	console.log('\n  Usage: c-preprocessor [options] input-file [output-file]');
 	console.log('\n  Options:');
 	console.log('\n    -c, --config  configuration file');
 
 	process.exit(1);
-}
+});
 
-// Help argument
-argv.add('h', 'help', 0, help);
+
+
+// Version argument
+argv.add('v', 'version', 0, function version() {
+	var json = require('../package.json');
+	console.log('\n  C-Preprocessor version: ' + json.version);
+	process.exit(1);
+});
 
 
 

@@ -1,3 +1,11 @@
+## Version 0.2.12 (29/01/2017)
+  
+  - Add `#pragma push_macro(..)` command (thanks to @zohl)
+  - Add `#pragma pop_macro(..)` command (thanks to @zohl)
+  - Fix issue: comment in `#define` directive (thanks to @zohl)
+  - Add `-v` and `--version` to show the version in the CLI
+
+
 ## Version 0.2.11 (29/01/2017)
   
   - Add `-c` and `--config` to specify a configuration file in the CLI (thanks to @zohl)
@@ -18,7 +26,7 @@
 
   - Update README.md
   - Add `__TIME__` and `__DATE__` constants
-  - Add `#error` command
+  - Add `#error` directive
   - Clean unit tests
 
 

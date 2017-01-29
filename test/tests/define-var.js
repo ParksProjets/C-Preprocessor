@@ -39,7 +39,7 @@ test.setting('constants', {
 // Run the test
 test.run(`
 
-#define VARIABLE ${a}
+#define VARIABLE ${a} // This is a comment
 #define VARIABLE_2 ${b}
 
 var r1 = VARIABLE + VARIABLE_2,
