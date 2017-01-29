@@ -29,7 +29,7 @@ If you have installed this package in global, you can run **c-preprocessor** and
 c-preprocessor mainFile.js outputFile.js
 ```
 
-Additionally you can specify config file (see below for it's format):
+Additionally you can specify a configuration file (see below for it's format):
 ```
 c-preprocessor --config configFile.js mainFile.js outputFile.js
 ```

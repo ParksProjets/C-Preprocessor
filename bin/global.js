@@ -5,7 +5,10 @@
 C Preprocessor, CLI
 
 
-© 2017 - Guillaume Gonnet
+© 2017 -
+	Guillaume Gonnet
+	Al Zohali
+
 License GPLv2
 
 Sources at https://github.com/ParksProjets/C-Preprocessor
@@ -16,22 +19,42 @@ Sources at https://github.com/ParksProjets/C-Preprocessor
 // Libraries
 var fs = require('fs'),
 	path = require('path'),
-	compiler = require('../index.js');
+	compiler = require('../index.js'),
+	argv = require('./argv-parser.js');
+
 
 
 // Start time
 var startTime = Date.now();
 
 
+// Local options
+var options;
+var inputFile;
+var outputFile;
+
+
 
 // Show an error
-function error(msg) {
+function error(msg, addHint) {
 	console.log('\x1b[31m');
 	console.log('The compiler has stopped on an error')
 	console.log(`\x1b[1;31mError: ${msg}\x1b[0m`);
 
+	if (addHint)
+		console.log(`\nPlease use -h to show the usage`);
+
 	process.exit(1);
 }
+
+
+// Argv parser error
+argv.error = function(msg) {
+	error(msg, true);
+};
+
+
+
 
 // Show help message
 function help() {
@@ -42,46 +65,35 @@ function help() {
 	process.exit(1);
 }
 
-// Read CLI arguments
-var configFile;
-var inputFile;
-var outputFile;
+// Help argument
+argv.add('h', 'help', 0, help);
 
-var i = 2;
-var n = process.argv.length;
 
-if (process.argv[i] === "--config" || process.argv[i] === "-c") {
-	++i;
-	if (i < n) {
-		configFile = process.argv[i++];
+
+
+// Configuration file
+argv.add('c', 'config', 1, function(arr) {
+	try {
+		options = JSON.parse(fs.readFileSync(arr[0], 'utf8'));
+	} catch(e) {
+		error("Can't read configuration file");
 	}
-	else {
-		help();
-	}
-}
-
-if (i < n) {
-	inputFile = process.argv[i++];
-}
-else {
-	help();
-}
-
-if (i < n) {
-	outputFile = process.argv[i++];
-}
-
-if (i < n) {
-	help();
-}
+});
 
 
 
-// If config file is specified
-var options;
-if (configFile !== undefined) {
-	options = JSON.parse(fs.readFileSync(configFile, 'utf8'));
-}
+
+// Start parsing argv
+argv.parse();
+
+// Input & output files
+inputFile = argv.argv[0];
+outputFile = argv.argv[1];
+
+
+// If the input file is not specified
+if (inputFile === undefined)
+	error("input file are required", true);
 
 
 // If the output file is not specified
@@ -93,6 +105,10 @@ if (outputFile === undefined) {
 
 	outputFile = dir + name + '-built' + ext;
 }
+
+
+
+
 
 
 // Preprocess input file
@@ -116,4 +132,3 @@ c.on('success', function(code) {
 });
 
 c.compileFile(inputFile);
-

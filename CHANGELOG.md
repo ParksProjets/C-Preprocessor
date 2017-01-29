@@ -1,3 +1,9 @@
+## Version 0.2.11 (29/01/2017)
+  
+  - Add `-c` and `--config` to specify a configuration file in the CLI (thanks to @zohl)
+  - Add `-h` and `--help` to show the usage in the CLI (thanks to @zohl)
+
+
 ## Version 0.2.10 (05/01/2017)
 
   - Add `__LINE__` and `__FILE__`
