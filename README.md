@@ -175,6 +175,8 @@ Stop the compiler and log the message given after the directive.
 ```c
 __TIME__ // Current time
 __DATE__ // Current date
+__LINE__ // Current line (where this constant is used).
+__FILE__ // Current file (where this constant is used).
 ```
 This constants are predefined by the compiler.
 
