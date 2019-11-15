@@ -1,17 +1,14 @@
 {
 	"name": "c-preprocessor",
 	"description": "Preprocess JS files like C files.",
-	"version": "0.2.12",
+	"version": "0.2.13",
 
 	"author": {
 		"name": "Guillaume Gonnet",
 		"url": "https://github.com/ParksProjets"
 	},
 	"repository": "ParksProjets/C-Preprocessor",
-	"license": {
-		"type": "GPLv2",
-		"url": "https://github.com/ParksProjets/C-Preprocessor/blob/master/LICENSE"
-	},
+	"license": "GPLv2",
 
 	"main": "index.js",
 	"scripts": {

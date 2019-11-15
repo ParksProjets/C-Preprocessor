@@ -1,3 +1,9 @@
+## Version 0.2.13 (15/11/2019)
+  
+  - Fix issue: multiple occurrences of a macro on the same line
+  - Fix issue: macro with no arguments
+
+
 ## Version 0.2.12 (29/01/2017)
   
   - Add `#pragma push_macro(..)` command (thanks to @zohl)
@@ -18,7 +24,7 @@
   - Rename `options.endLine` to `options.newLine`
   - Make optional the second argument of the CLI
   - Tidy a bit the source code
-  - Fix issue: Replace line endings from CRLF to LF for macOS
+  - Fix issue: replace line endings from CRLF to LF for macOS
   - Fix issue: directives with a whitespace between # and their name
 
 
