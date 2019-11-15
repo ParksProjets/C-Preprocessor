@@ -18,14 +18,15 @@ var utils = require('../utils.js'),
 
 
 // Random numbers
-var a = utils.randint(0, 100),
-	b = utils.randint(0, 100),
+var a = utils.randint(1, 100),
+	b = utils.randint(1, 100),
 	c = utils.randint(200, 300);
 
 
 // Expected results
 test.result('r1', a + b);
 test.result('r2', c);
+test.result('r3', a * a + a);
 test.result('today', new Date().toLocaleDateString());
 
 
@@ -43,7 +44,8 @@ test.run(`
 #define VARIABLE_2 ${b}
 
 var r1 = VARIABLE + VARIABLE_2,
-	r2 = VARIABLE_3;
+	r2 = VARIABLE_3,
+	r3 = VARIABLE * VARIABLE + VARIABLE;
 
 var today = "__DATE__";
 

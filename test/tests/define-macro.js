@@ -25,6 +25,7 @@ var a = utils.randint(0, 100),
 // Expected results
 test.result('r1', a * 5 * 7);
 test.result('r2', a*(b+12)*5*5 - 74);
+test.result('same', 74 + 74);
 test.result('str', 'Name -> This is (a) label');
 test.result('f8', 21);
 
@@ -57,6 +58,8 @@ test.run(`
 
 var r1 = MACRO1(${a}, 7),
 	r2 = MACRO2(${a}, MACRO1(SUM(${b}, 12), 1), NUM);
+
+var same = NUM + NUM;
 
 var str = STR('Name', 'This is (a) label')
 
